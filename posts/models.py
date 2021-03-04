@@ -13,7 +13,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=100)
 
     bio = models.TextField(blank=True)
-
+    is_admin = models.BooleanField(default=False)
     birthdate = models.DateField(blank=True, null=True)
 
     created = models.DateTimeField(auto_now_add=True)
