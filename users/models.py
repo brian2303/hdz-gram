@@ -1,6 +1,34 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+"""
+    CONFIGURAR DJANGO PARA QUE SIRVA ARCHIVOS MEDIA
+
+    Django por defecto no esta preparado para servir
+    archivos estaticos pero para configurarlo para que
+    pueda servir imagenes o videos debemos realizar los
+    siguientes pasos
+
+    1. Cuando creemos el campo que va tener una imagen debemos
+        con el atributo upload_to='path/where/upload/file/'
+
+    2. Debemos en el archivo principal de urls.py indicarle
+        cual configurar las rutas para que aparte de buscar
+        las rutas con la configuracion de django tambien
+        pueda servir imagenes en una ruta determinada.
+
+        + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    3. Luego en el archivo settings.py debemos configurar las variables
+        MEDIA_ROOT y MEDIA_URL la primera contiene la ruta absoluta
+        del directorio que guardara los archivos media como .jpg .png etc.
+        y la segunda es como se llamara el directorio que va contener
+        estas imagenes y archivos media
+
+        MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+        MEDIA_URL = "/media/"
+"""
+
 
 class Profile(models.Model):
     """

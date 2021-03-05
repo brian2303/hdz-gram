@@ -22,6 +22,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_editable = ("phone_number", "website")
 
     # aparece una barra de busqueda y me permite buscar por el campo email en este ejemplo
+    # con user__email estamos accediendo a la relacion que tiene Profile con User para decirle que busque por email o username en la barra de busqueda
     search_fields = ("user__email", "user__username")
 
     # me agrega un filtro especial con estos campos.

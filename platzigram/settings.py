@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Directorio donde esta corriendo el proyecto
@@ -131,3 +131,8 @@ USE_TZ = True
 # Define que cada vez que vaya a /static/ en lugar de resolver la ruta
 # usando el archivo urls.py va buscar resolver el archivo estatico
 STATIC_URL = "/static/"
+
+# ruta absoluta del MEDIA_ROOT
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# directorio que sera declarado como media
+MEDIA_URL = "/media/"
