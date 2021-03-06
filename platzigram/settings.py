@@ -137,3 +137,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # directorio que sera declarado como media
 MEDIA_URL = "/media/"
+
+# redirecciona aca si intenta acceder a un recurso protegido
+LOGIN_URL = "login"
