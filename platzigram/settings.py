@@ -62,7 +62,7 @@ ROOT_URLCONF = "platzigram.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         # APP_DIRS: Busca dentro de cada app un folder de name templates
         "APP_DIRS": True,
         "OPTIONS": {
@@ -131,6 +131,7 @@ USE_TZ = True
 # Define que cada vez que vaya a /static/ en lugar de resolver la ruta
 # usando el archivo urls.py va buscar resolver el archivo estatico
 STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # ruta absoluta del MEDIA_ROOT
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
