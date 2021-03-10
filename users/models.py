@@ -40,7 +40,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(max_length=200, blank=True)
     biography = models.TextField(blank=True)
-    phone_number = models.CharField(max_length=20, blank=True)
+    phone_number = models.CharField(
+        max_length=20,
+        blank=True,
+        error_messages={
+            "max_length": "Logitud máxima 20",
+        },
+    )
 
     picture = models.ImageField(upload_to="users/pictures", blank=True, null=True)
 
