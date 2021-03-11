@@ -7,12 +7,31 @@
 {% block container %}
 
 <form action="{% url 'signup' %}" method="POST">
+    {% comment "Display error" %}
     {% if error %}
     <p class="alert alert-danger">
         {{ error }}
     </p>
     {% endif %}
+    {% endcomment %}
+
     {% csrf_token %}
+
+    {% comment %}
+    {% for field in form %}
+    <div class="form-group">
+        <span>{{ field.label_tag }}</span>
+        {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    {% endcomment %}
+
+    {{ form.as_p }}
+
+    <button class="btn btn-primary btn-block mt-5" type="submit">Register!</button>
+
+    {% comment "" %}
     <div class="form-group">
         <input class="form-control" type="text" name="username" class="form-control" placeholder="Username" required>
     </div>
@@ -32,6 +51,7 @@
         <input class="form-control" type="email" placeholder="Email Address" name="email">
     </div>
     <button class="btn btn-primary btn-block mt-5" type="submit">Sign up!</button>
+    {% endcomment %}
 </form>
 
 {% endblock container %}
