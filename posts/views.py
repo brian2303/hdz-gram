@@ -1,17 +1,28 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView
 
-from posts.models import Post
 from posts.forms import PostForm
 
+from posts.models import Post
 
-@login_required
-def list_posts(request):
-    # ordena del ultimo al primer post creado por fecha
-    posts = Post.objects.all().order_by("-created")
-    # https://docs.djangoproject.com/en/3.1/topics/templates/
-    return render(request, "posts/feed.html", {"posts": posts})
+
+class PostsFeedView(LoginRequiredMixin, ListView):
+    template_name = 'posts/feed.html'
+    model = Post
+    ordering = ('-created')
+    paginate_by = 10
+    # Con este atributo indicamos que queremos que el model = Post que declaramos arriba en la vista se llame posts
+    context_object_name = 'posts'
+
+
+class PostDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'posts/detail.html'
+    # No trae todos los posts por que con este query DetailView sabe como traer solo el que necesitamos
+    queryset = Post.objects.all()
+    # Es el nombre con el que se utilizara en el template
+    context_object_name = 'post'
 
 
 @login_required

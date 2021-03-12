@@ -1,12 +1,11 @@
 from django.urls import path
-from django.views.generic import TemplateView
 
 from . import views
 
 urlpatterns = [
     path(
         route='profile/<str:username>/',
-        view=TemplateView.as_view(template_name='users/detail.html'),
+        view=views.UserDetailView.as_view(),
         name='detail'
     ),
     path(
